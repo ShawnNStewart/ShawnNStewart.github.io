@@ -1,0 +1,23 @@
+[
+  {
+    "listing": "/Assignments.html",
+    "items": [
+      "/posts/Assignment-2_TEDS-2016.html",
+      "/posts/EPPS6323_Assignment1.html",
+      "/posts/Lab02.html",
+      "/posts/Lab03.html",
+      "/posts/Assignment3.html",
+      "/posts/Lab01.html"
+    ]
+  },
+  {
+    "listing": "/projects.html",
+    "items": []
+  },
+  {
+    "listing": "/Projects.html",
+    "items": [
+      "/projects/InteractiveMap.html"
+    ]
+  }
+]
