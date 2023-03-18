@@ -3,11 +3,14 @@
     "listing": "/Assignments.html",
     "items": [
       "/posts/Assignment-2_TEDS-2016.html",
-      "/posts/EPPS6323_Assignment1.html",
+      "/posts/Assignment1.html",
       "/posts/Lab02.html",
       "/posts/Lab03.html",
       "/posts/Assignment3.html",
-      "/posts/Lab01.html"
+      "/posts/Lab01.html",
+      "/posts/Lab-k-means-cluster.html",
+      "/posts/Lab_text-mining_word-cloud.html",
+      "/posts/LabPCA.html"
     ]
   },
   {
