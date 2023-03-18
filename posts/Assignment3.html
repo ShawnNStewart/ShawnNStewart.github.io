@@ -148,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Projects.qmd">
+    <a class="nav-link" href="../projects/index.html">
  <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Assignment 3 - Regression Analysis with TEDS 2016 data</h1>
   <div class="quarto-categories">
     <div class="quarto-category">EPPS 6323</div>
-    <div class="quarto-category">lab</div>
+    <div class="quarto-category">assignment</div>
   </div>
   </div>
 
@@ -216,39 +216,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>teds <span class="ot">&lt;-</span> <span class="fu">read_stata</span>(<span class="st">"https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Converting atomic to factors. Please wait...</code></pre>
-</div>
 </div>
 </section>
 <section id="select-only-relevant-variables" class="level2">
 <h2 class="anchored" data-anchor-id="select-only-relevant-variables">Select only relevant variables</h2>
 <p>Create a subset of the dataset (Tondu, female, DPP, age, income, edu, Taiwanese and Econ_worse).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add labels to Tondu variable</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>teds<span class="sc">$</span>Tondu<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(teds<span class="sc">$</span>Tondu,<span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Unification now”, “Status quo, unif. in future”, “Status quo, decide later"</span>, <span class="st">"Status quo forever"</span>, <span class="st">"Status quo, indep. in future"</span>, <span class="st">"Independence now”, “No response"</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>teds <span class="ot">&lt;-</span> teds <span class="sc">%&gt;%</span> </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Tondu, female, DPP, age, income, edu, Taiwanese, Econ_worse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add labels to Tondu variable</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>teds<span class="sc">$</span>Tondu<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(teds<span class="sc">$</span>Tondu,<span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Unification now”, “Status quo, unif. in future”, “Status quo, decide later"</span>, <span class="st">"Status quo forever"</span>, <span class="st">"Status quo, indep. in future"</span>, <span class="st">"Independence now”, “No response"</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>teds <span class="ot">&lt;-</span> teds <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Tondu, female, DPP, age, income, edu, Taiwanese, Econ_worse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="run-a-regplot-on-the-dependent-variable" class="level2">
 <h2 class="anchored" data-anchor-id="run-a-regplot-on-the-dependent-variable">5. Run a regplot on the dependent variable</h2>
 <p>Use age, education, income</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Tondu <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> age, edu, income, <span class="at">data =</span> teds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Tondu <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> age <span class="sc">+</span> edu <span class="sc">+</span> income, <span class="at">data =</span> teds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Tondu ~ 0 + age, data = teds, subset = edu, weights = income)
+lm(formula = Tondu ~ 0 + age + edu + income, data = teds)
 
 Coefficients:
-    age  
-0.07137  </code></pre>
+    age      edu   income  
+0.05466  0.33706  0.03406  </code></pre>
 </div>
 </div>
 <p><strong>What is the problem? Why? (hint: how many categories in the DV?)</strong></p>
+<p>Since there are multiple categories in the dependent variable, it is difficult to interpret the coefficients of the model we’ve generated.</p>
 <p><strong>What can be done to improve prediction of the dependent variable?</strong></p>
+<p>Rather than a simple linear regression, a multinomial logistic regression model may work better.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multinom</span>(Tondu <span class="sc">~</span> age <span class="sc">+</span> edu <span class="sc">+</span> income, <span class="at">data=</span>teds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># weights:  35 (24 variable)
+initial  value 3269.129050 
+iter  10 value 2862.327758
+iter  20 value 2719.038514
+iter  30 value 2652.095289
+final  value 2651.908647 
+converged</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+multinom(formula = Tondu ~ age + edu + income, data = teds)
+
+Coefficients:
+  (Intercept)          age         edu       income
+2   -0.698701  0.015056992  0.48214997  0.087870013
+3    3.135378 -0.029543248  0.37177638  0.073352836
+4    2.155079 -0.010113129  0.23946974  0.063161195
+5    3.077561 -0.041132676  0.43822387  0.066499389
+6    4.129241 -0.046893568 -0.04872328 -0.014283116
+9    1.615135  0.008656457 -0.32097630 -0.002354623
+
+Residual Deviance: 5303.817 
+AIC: 5351.817 </code></pre>
+</div>
+</div>
 
 
 </section>
